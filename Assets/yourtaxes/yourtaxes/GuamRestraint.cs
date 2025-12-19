@@ -1,0 +1,70 @@
+using UnityEngine;
+
+namespace yourtaxes {
+    public class GuamRestraint : MonoBehaviour
+    {
+        public bool guamTipped;
+        [SerializeField]
+        private Color regularColor;
+        [SerializeField]
+        public Color warningColor;
+        [SerializeField]
+        private float guamMaxAngle;
+        [SerializeField]
+        private float guamWarningAngle;
+        [SerializeField]
+        private float warningFrictionMultiplier;
+        [SerializeField]
+        private float currentRotation;
+        private Rigidbody2D rb;
+        private Transform tf;
+        private SpriteRenderer sr;
+        private WinLoseConditions wlc;
+        void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            tf = GetComponent<Transform>();
+            sr = GetComponent<SpriteRenderer>();
+            wlc = GetComponent<WinLoseConditions>();
+        }
+
+        void Update()
+        {
+            currentRotation = tf.eulerAngles.z;
+            //Debug.Log(currentRotation);
+            if (tipped(guamMaxAngle) && !wlc.hasWon)
+            {
+                guamTipped = true;
+                //Debug.Log("Guam Tipped");
+            }
+            if (tipped(guamWarningAngle))
+            {
+                sr.color = warningColor;
+            }
+            else
+            {
+                sr.color = regularColor;
+            }
+        }
+
+        //freeses guam in place
+        public void lockGuam()
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        //determines if guam is more than threshold degrees tilted away from being flat
+        private bool tipped(float threshold)
+        {
+            if (currentRotation < threshold)
+            {
+                return false;
+            }
+            if (currentRotation > (360 - threshold))
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+}
