@@ -689,7 +689,7 @@ FrictionJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: -2}
   m_MaxForce: 1
-  m_MaxTorque: 150
+  m_MaxTorque: 200
 --- !u!114 &1530977922
 MonoBehaviour:
   m_ObjectHideFlags: 0

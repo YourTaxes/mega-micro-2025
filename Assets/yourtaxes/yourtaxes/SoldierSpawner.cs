@@ -76,7 +76,7 @@ namespace yourtaxes
                 //currentRigidbody.mass = currentRigidbody.mass * ()
                 //Debug.Log("dificulty = " + dificulty + ", MaxBoxes = " + maxBoxes + ", subdivisions = " + subdivisions);
                 //Debug.Log(0.5f + (0.5f * (dificulty * maxBoxes) - subdivisions + 1));
-                Debug.Log(0.5f + (0.5f * dificulty));
+                //Debug.Log(0.5f + (0.5f * dificulty));
                 currentRigidbody.mass = StandardWeights[soldierIndex] * (0.5f + (0.5f * dificulty));
 
                 

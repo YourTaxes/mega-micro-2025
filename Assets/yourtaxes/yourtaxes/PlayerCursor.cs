@@ -57,7 +57,7 @@ namespace yourtaxes
 
                 Rigidbody2D rb = Instantiate(soldiers[soldierIndex], soldierPos, Quaternion.identity).GetComponent<Rigidbody2D>();
                 rb.linearVelocityY = -soldierSpeed;
-                Debug.Log("boxSpeed " + rb.linearVelocityY);
+                //Debug.Log("boxSpeed " + rb.linearVelocityY);
 
             }
             if (Input.GetButtonDown("Enable Debug Button 2"))
