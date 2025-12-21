@@ -20,11 +20,14 @@ namespace yourtaxes
         private int smallChance;
         [SerializeField]
         private GameObject[] soldiers;
+        [SerializeField]
+        private GameObject guamRestraint;
+        private GuamRestraint gr;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            gr = guamRestraint.GetComponent<GuamRestraint>();
         }
 
         // Update is called once per frame
@@ -32,7 +35,7 @@ namespace yourtaxes
         {
             //Debug.Log(transform.position.x);
 
-            if (Input.GetButtonDown("Space") || Input.GetButton("Enable Debug Button 1"))
+            if ((Input.GetButtonDown("Space") || Input.GetButton("Enable Debug Button 1")) && !gr.guamTipped)
             {
                 Vector3 soldierPos = transform.position;
                 soldierPos.y += soldierOffset;

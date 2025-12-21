@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 namespace yourtaxes
@@ -11,9 +12,12 @@ namespace yourtaxes
         [SerializeField]
         private GameObject loseScreen;
         [SerializeField]
-        private GameObject winScreen;
+        private Animator winScreenAnimator;
+        [SerializeField]
+        private Animator loseScreenAnimator;
         private GuamRestraint guamRestraint;
         private float timer;
+        private bool hasEnded;
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,25 +31,24 @@ namespace yourtaxes
         void Update()
         {
             timer += Time.deltaTime;
-            if (timer >= timeToWin)
+            if (timer >= timeToWin && !hasEnded)
             {
-
                 if (!guamRestraint.guamTipped)
                 {
                     hasWon = true;
                     guamRestraint.lockGuam();
-                    winScreen.SetActive(true);
+                    //Debug.Log("playWin");
+                    //winScreen.SetActive(true);
+                    winScreenAnimator.Play("winMoveUp", 0);
                     Managers.MinigamesManager.DeclareCurrentMinigameWon();
                 }
                 else
                 {
                     Managers.MinigamesManager.DeclareCurrentMinigameLost();
                     hasLost = true;
+                    loseScreenAnimator.Play("loseMoveUp");
                 }
-            }
-            if (guamRestraint.guamTipped)
-            {
-                loseScreen.SetActive(true);
+                hasEnded = true;
             }
         }
     }
