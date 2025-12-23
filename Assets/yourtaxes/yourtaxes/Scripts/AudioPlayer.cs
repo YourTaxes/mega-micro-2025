@@ -34,8 +34,12 @@ namespace yourtaxes
                 playAudio(winMusic);
                 startedPlaying = true;
             }
-            if (wlc.hasLost && !startedPlaying && !source.isPlaying)
+            if (wlc.hasLost && !startedPlaying)
             {
+                if (source.isPlaying)
+                {
+                    source.Stop();
+                }
                 playAudio(loseMusic);
                 startedPlaying = true;
             }

@@ -1300,7 +1300,7 @@ MonoBehaviour:
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   warningColor: {r: 1, g: 0, b: 0, a: 1}
   guamMaxAngle: 40
-  guamWarningAngle: 35
+  guamWarningAngle: 25
   currentRotation: 0
   island: {fileID: 1533250245}
   splashClip: {fileID: 8300000, guid: b49fe70ae5329447a95244f9d33aaa41, type: 3}
@@ -1339,6 +1339,7 @@ MonoBehaviour:
   hasLost: 0
   timeToWin: 6.5
   hasEnded: 0
+  timeAfterLose: 4.25
   loseScreen: {fileID: 872089899}
   winScreenAnimator: {fileID: 1751899404}
   loseScreenAnimator: {fileID: 872089902}
@@ -1359,8 +1360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amntBoxes: 3
   StandardWeights:
-  - 3
-  - 5
+  - 2
+  - 4
   - 1
   regularChance: 60
   largeChance: 30
@@ -1533,7 +1534,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
   m_Color: {r: 0, g: 0.4811321, b: 0.07169817, a: 1}

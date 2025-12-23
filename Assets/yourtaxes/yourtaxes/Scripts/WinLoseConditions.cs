@@ -11,6 +11,8 @@ namespace yourtaxes
         public float timeToWin;
         public bool hasEnded;
         [SerializeField]
+        private float timeAfterLose;
+        [SerializeField]
         private GameObject loseScreen;
         [SerializeField]
         private Animator winScreenAnimator;
@@ -25,6 +27,7 @@ namespace yourtaxes
         private GuamRestraint guamRestraint;
         private AudioPlayer audioPlayer;
         private float timer;
+        private float loseTimer;
 
 
 
@@ -41,26 +44,29 @@ namespace yourtaxes
         void Update()
         {
             timer += Time.deltaTime;
-            if (timer >= timeToWin && !hasEnded)
+            if (timer >= timeToWin && !hasEnded && !guamRestraint.guamTipped)
             {
-                if (!guamRestraint.guamTipped)
-                {
-                    hasWon = true;
-                    guamRestraint.lockGuam();
-                    winScreenAnimator.Play("winMoveUp", 0);
-                    senator.Play("SenatorWin");
-                    audioPlayer.playAudio(winSound);
-                    Managers.MinigamesManager.DeclareCurrentMinigameWon();
-                }
-                else
-                {
-                    Managers.MinigamesManager.DeclareCurrentMinigameLost();
-                    hasLost = true;
-                    senator.Play("senatorLose");
-                    audioPlayer.playAudio(loseSound);
-                    loseScreenAnimator.Play("loseMoveUp");
-                }
+                hasWon = true;
+                guamRestraint.lockGuam();
+                winScreenAnimator.Play("winMoveUp", 0);
+                senator.Play("SenatorWin");
+                audioPlayer.playAudio(winSound);
+                Managers.MinigamesManager.DeclareCurrentMinigameWon();
                 hasEnded = true;
+            }
+            if (guamRestraint.guamTipped && !hasEnded)
+            {
+                Managers.MinigamesManager.DeclareCurrentMinigameLost();
+                hasLost = true;
+                senator.Play("senatorLose");
+                audioPlayer.playAudio(loseSound);
+                loseScreenAnimator.Play("loseMoveUp");
+                hasEnded = true;
+                loseTimer = timer + timeAfterLose;
+            }
+            if (hasLost && (timer >= loseTimer))
+            {
+                Managers.MinigamesManager.EndCurrentMinigame();
             }
         }
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   minigameType: 0
   gameTime: 10286
   instruction: Don't Tip!
-  title: Deerlivery
+  title: Pricarious Deerlivery
   creditsText: 'Finnegan McDevitt - Programming / Design / Music
 
     <link=https://www.linkedin.com/in/finnegan-mcdevitt-397b2b396/><u>LinkedIn</u></color></link>
@@ -30,4 +30,5 @@ MonoBehaviour:
     <link=https://x.com/crocobiscuit?s=21><u>X/Twitter</u></color></link>
 
 '
-  minigameScreenshot: {fileID: 0}
+  minigameScreenshot: {fileID: 5546860700157396188, guid: 9d3ce7e070e7d45aab7b43a782600a1e,
+    type: 3}
