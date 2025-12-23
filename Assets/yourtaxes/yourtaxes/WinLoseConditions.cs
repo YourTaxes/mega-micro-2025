@@ -18,9 +18,14 @@ namespace yourtaxes
         private Animator loseScreenAnimator;
         [SerializeField]
         private Animator senator;
+        [SerializeField]
+        private AudioClip winSound;
+        [SerializeField]
+        private AudioClip loseSound;
         private GuamRestraint guamRestraint;
+        private AudioPlayer audioPlayer;
         private float timer;
-        
+
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +33,7 @@ namespace yourtaxes
         {
             timer = 0;
             guamRestraint = GetComponent<GuamRestraint>();
+            audioPlayer = GetComponent<AudioPlayer>();
 
         }
 
@@ -43,6 +49,7 @@ namespace yourtaxes
                     guamRestraint.lockGuam();
                     winScreenAnimator.Play("winMoveUp", 0);
                     senator.Play("SenatorWin");
+                    audioPlayer.playAudio(winSound);
                     Managers.MinigamesManager.DeclareCurrentMinigameWon();
                 }
                 else
@@ -50,6 +57,7 @@ namespace yourtaxes
                     Managers.MinigamesManager.DeclareCurrentMinigameLost();
                     hasLost = true;
                     senator.Play("senatorLose");
+                    audioPlayer.playAudio(loseSound);
                     loseScreenAnimator.Play("loseMoveUp");
                 }
                 hasEnded = true;

@@ -16,9 +16,12 @@ namespace yourtaxes {
         private float currentRotation;
         [SerializeField]
         private GameObject island;
+        [SerializeField]
+        private AudioClip splashClip;
         private Rigidbody2D rb;
         private Transform tf;
         private SpriteRenderer sr;
+        private AudioPlayer ap;
         
         private WinLoseConditions wlc;
         void Start()
@@ -27,15 +30,17 @@ namespace yourtaxes {
             tf = GetComponent<Transform>();
             sr = island.GetComponent<SpriteRenderer>();
             wlc = GetComponent<WinLoseConditions>();
+            ap = GetComponent<AudioPlayer>();
         }
 
         void Update()
         {
             currentRotation = tf.eulerAngles.z;
             //Debug.Log(currentRotation);
-            if (tipped(guamMaxAngle) && !wlc.hasWon)
+            if (tipped(guamMaxAngle) && !wlc.hasWon && !guamTipped)
             {
                 guamTipped = true;
+                ap.playAudio(splashClip);
                 //Debug.Log("Guam Tipped");
             }
             if (tipped(guamWarningAngle))

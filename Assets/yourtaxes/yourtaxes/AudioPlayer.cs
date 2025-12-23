@@ -31,18 +31,21 @@ namespace yourtaxes
             if (wlc.hasWon && !startedPlaying && !source.isPlaying)
             {
                 //Debug.Log("hasWon");
-                AudioSource win = Managers.AudioManager.CreateAudioSource();
-                win.clip = winMusic;
-                win.Play();
+                playAudio(winMusic);
                 startedPlaying = true;
             }
             if (wlc.hasLost && !startedPlaying && !source.isPlaying)
             {
-                AudioSource lose = Managers.AudioManager.CreateAudioSource();
-                lose.clip = loseMusic;
-                lose.Play();
+                playAudio(loseMusic);
                 startedPlaying = true;
             }
+        }
+
+        public void playAudio(AudioClip clipToPlay)
+        {
+            AudioSource audioSource = Managers.AudioManager.CreateAudioSource();
+            audioSource.clip = clipToPlay;
+            audioSource.Play();
         }
     }
 }
